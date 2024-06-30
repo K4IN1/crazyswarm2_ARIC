@@ -4,12 +4,12 @@ robots:
     enabled: true
     uri: radio://0/80/2M/E7E7E7E701
     initial_position: [-0.5, 0.0, 0.0]
-    type: cf21 
+    type: cf21_mocap_deck
   cf3:
     enabled: true
     uri: radio://0/80/2M/E7E7E7E703
     initial_position: [0.5, 0.0, 0.0]
-    type: cf21  # see robot_types
+    type: cf21_mocap_deck # see robot_types
     # firmware_params:
     #   kalman:
     #     pNAcc_xy: 1.0 # default 0.5

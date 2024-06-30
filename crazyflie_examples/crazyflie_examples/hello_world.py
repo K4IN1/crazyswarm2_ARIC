@@ -22,14 +22,14 @@ def main():
     timeHelper.sleep(TAKEOFF_DURATION)
     cf1.setParam('led.bitmask',0)
     
-    cf3.setParam('led.bitmask',255)
-    cf3.takeoff(targetHeight=1.0, duration=TAKEOFF_DURATION)
-    timeHelper.sleep(TAKEOFF_DURATION + HOVER_DURATION)
-    cf3.goTo([1.0,1.0,1.0],0,3)
-    timeHelper.sleep(HOVER_DURATION)
-    cf3.land(targetHeight=0.04, duration=2.5)
-    timeHelper.sleep(TAKEOFF_DURATION)
-    cf3.setParam('led.bitmask',0)
+    # cf3.setParam('led.bitmask',255)
+    # cf3.takeoff(targetHeight=1.0, duration=TAKEOFF_DURATION)
+    # timeHelper.sleep(TAKEOFF_DURATION + HOVER_DURATION)
+    # cf3.goTo([1.0,1.0,1.0],0,3)
+    # timeHelper.sleep(HOVER_DURATION)
+    # cf3.land(targetHeight=0.04, duration=2.5)
+    # timeHelper.sleep(TAKEOFF_DURATION)
+    # cf3.setParam('led.bitmask',0)
 
 if __name__ == '__main__':
     main()
