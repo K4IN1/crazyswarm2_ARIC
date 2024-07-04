@@ -36,7 +36,7 @@ robots:
 robot_types:
   cf21:
     motion_capture:
-      enabled: fasle
+      enabled: false
       # only if enabled; see motion_capture.yaml
       marker: default_single_marker
       dynamics: default
