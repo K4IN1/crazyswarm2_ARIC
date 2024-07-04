@@ -36,7 +36,7 @@ robots:
 robot_types:
   cf21:
     motion_capture:
-      enabled: true
+      enabled: fasle
       # only if enabled; see motion_capture.yaml
       marker: default_single_marker
       dynamics: default
@@ -59,7 +59,7 @@ robot_types:
 
   cf21_mocap_deck:
     motion_capture:
-      enabled: true
+      enabled: false
       # only if enabled; see motion_capture.yaml
       marker: mocap_deck
       dynamics: default
@@ -79,20 +79,20 @@ all:
   firmware_logging:
     enabled: false
     # 上参数为使能固件log
-    # default_topics:
-    #  # remove to disable default topic
-    #   pose:
-    #     frequency: 10 # Hz
-    #   status:
-    #     frequency: 1 # Hz
+    default_topics:
+     # remove to disable default topic
+      pose:
+        frequency: 10 # Hz
+      status:
+        frequency: 1 # Hz
     # 设置自己的firmware_logging 降低频率 减少通信压力   
-    custom_topics:
-     position:
-       frequency: 5 # Hz
-       vars: ["stateEstimateZ.x", "stateEstimateZ.y", "stateEstimateZ.z"]
-     rotation:
-       frequency: 1 # Hz
-       vars: ["stabilizer.roll", "stabilizer.pitch", "stabilizer.yaw"]
+    # custom_topics:
+    #  position:
+    #    frequency: 5 # Hz
+    #    vars: ["stateEstimateZ.x", "stateEstimateZ.y", "stateEstimateZ.z"]
+    #  rotation:
+    #    frequency: 1 # Hz
+    #    vars: ["stabilizer.roll", "stabilizer.pitch", "stabilizer.yaw"]
   # firmware parameters for all drones (use robot_types/type_name to set per type, or
   # robots/drone_name to set per drone)
   firmware_params:
