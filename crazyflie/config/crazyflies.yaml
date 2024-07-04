@@ -36,7 +36,7 @@ robots:
 robot_types:
   cf21:
     motion_capture:
-      enabled: false
+      enabled: true
       # only if enabled; see motion_capture.yaml
       marker: default_single_marker
       dynamics: default
@@ -77,28 +77,35 @@ all:
   # firmware logging for all drones (use robot_types/type_name to set per type, or
   # robots/drone_name to set per drone)
   firmware_logging:
-    enabled: true
-    default_topics:
-     # remove to disable default topic
-      pose:
-        frequency: 10 # Hz
-      status:
-        frequency: 1 # Hz
-    #custom_topics:
-    #  topic_name1:
-    #    frequency: 10 # Hz
-    #    vars: ["stateEstimateZ.x", "stateEstimateZ.y", "stateEstimateZ.z", "pm.vbat"]
-    #  topic_name2:
-    #    frequency: 1 # Hz
-    #    vars: ["stabilizer.roll", "stabilizer.pitch", "stabilizer.yaw"]
+    enabled: false
+    # 上参数为使能固件log
+    # default_topics:
+    #  # remove to disable default topic
+    #   pose:
+    #     frequency: 10 # Hz
+    #   status:
+    #     frequency: 1 # Hz
+    # 设置自己的firmware_logging 降低频率 减少通信压力   
+    custom_topics:
+     position:
+       frequency: 5 # Hz
+       vars: ["stateEstimateZ.x", "stateEstimateZ.y", "stateEstimateZ.z"]
+     rotation:
+       frequency: 1 # Hz
+       vars: ["stabilizer.roll", "stabilizer.pitch", "stabilizer.yaw"]
   # firmware parameters for all drones (use robot_types/type_name to set per type, or
   # robots/drone_name to set per drone)
   firmware_params:
-    commander:
-      enHighLevel: 1
+    # commander:
+    #   enHighLevel: 1
+    # 上面这个参数在 2023.8 后自动启动
+    # 不再需要手动设置
     stabilizer:
       estimator: 2 # 1: complementary, 2: kalman
-      controller: 2 # 1: PID, 2: mellinger
+      controller: 1 # 1: PID, 2: mellinger
+
+    # esitimator 3 为无迹卡尔曼滤波 UKF 需要固件中手动启动
+    # controler 3 4 5 无文档证明性能相比(PID)优秀
     # ring:
     #   effect: 16 # 6: double spinner, 7: solid color, 16: packetRate
     #   solidBlue: 255 # if set to solid color
