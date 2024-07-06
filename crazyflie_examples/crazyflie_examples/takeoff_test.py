@@ -27,7 +27,10 @@ def main():
     
     cf1.land(0.04,2.5,groupMask=0b00000001)
     timeHelper.sleep(3)
-    cf1.land(0.04,2.5,groupMask=0b00000001)
+    cf3.land(0.04,2.5,groupMask=0b00000001)
+    timeHelper.sleep(3)
+
+    swarm.allcfs.land(0.04,2.5,0)
     timeHelper.sleep(3)
 
 if __name__ == '__main__':
