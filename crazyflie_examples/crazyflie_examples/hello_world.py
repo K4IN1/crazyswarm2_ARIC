@@ -26,9 +26,9 @@ def main():
     cf3.setParam('led.bitmask',255)
     timeHelper.sleep(3)
 
-    cf1.setParam('led.bitmask',191)
+    cf1.setParam('led.bitmask',128)
     timeHelper.sleep(3)
-    cf3.setParam('led.bitmask',191)
+    cf3.setParam('led.bitmask',128)
     timeHelper.sleep(3)
 
     cf1.setParam('led.bitmask',0)
