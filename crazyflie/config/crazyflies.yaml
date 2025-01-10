@@ -6,7 +6,7 @@ robots:
     initial_position: [0.0, 0.3, 0.0]
     type: cf21_mocap_deck
   cf3:
-    enabled: true
+    enabled: false
     uri: radio://0/80/2M/E7E7E7E700
     initial_position: [0.0,-0.3, 0.0]
     type: cf21_mocap_deck # see robot_types
@@ -36,7 +36,7 @@ robots:
 robot_types:
   cf21:
     motion_capture:
-      enabled: false
+      enabled: true
       # only if enabled; see motion_capture.yaml
       marker: default_single_marker
       dynamics: default
@@ -77,19 +77,19 @@ all:
   # firmware logging for all drones (use robot_types/type_name to set per type, or
   # robots/drone_name to set per drone)
   firmware_logging:
-    enabled: false
+    enabled: true
     # 上参数为使能固件log
     default_topics:
      # remove to disable default topic
       pose:
-        frequency: 10 # Hz
-      status:
-        frequency: 1 # Hz
+        frequency: 5 # Hz
+      # status:
+        # frequency: 1 # Hz
     # 设置自己的firmware_logging 降低频率 减少通信压力   
     # custom_topics:
-    #  position:
-    #    frequency: 5 # Hz
-    #    vars: ["stateEstimateZ.x", "stateEstimateZ.y", "stateEstimateZ.z"]
+    #   position:
+    #     frequency: 5 # Hz
+    #     vars: ["stateEstimate.x", "stateEstimate.y", "stateEstimate.z"]
     #  rotation:
     #    frequency: 1 # Hz
     #    vars: ["stabilizer.roll", "stabilizer.pitch", "stabilizer.yaw"]
@@ -100,6 +100,8 @@ all:
     #   enHighLevel: 1
     # 上面这个参数在 2023.8 后自动启动
     # 不再需要手动设置
+    colAv:
+      enable: 1
     stabilizer:
       estimator: 2 # 1: complementary, 2: kalman
       controller: 1 # 1: PID, 2: mellinger
