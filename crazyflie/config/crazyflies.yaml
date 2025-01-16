@@ -2,12 +2,13 @@
 robots:
   cf1:
     enabled: true
-    uri: radio://0/80/2M/E7E7E7E701
-    initial_position: [0.0, 0.3, 0.0]
+    # uri: radio://0/20/2M/E7E7E7E7E9
+    uri: radio://0/80/2M/E7E7E7E702
+    initial_position: [0.0, 0.0, 0.0]
     type: cf21_mocap_deck
   cf3:
     enabled: false
-    uri: radio://0/80/2M/E7E7E7E700
+    uri: radio://0/20/2M/E7E7E7E7E9   
     initial_position: [0.0,-0.3, 0.0]
     type: cf21_mocap_deck # see robot_types
     # firmware_params:
@@ -36,7 +37,7 @@ robots:
 robot_types:
   cf21:
     motion_capture:
-      enabled: true
+      enabled: false
       # only if enabled; see motion_capture.yaml
       marker: default_single_marker
       dynamics: default

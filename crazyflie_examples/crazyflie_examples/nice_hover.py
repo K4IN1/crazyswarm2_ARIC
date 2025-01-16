@@ -1,27 +1,54 @@
 #!/usr/bin/env python
 
 from crazyflie_py import Crazyswarm
-import numpy as np
+from crazyflie_py.crazyflie import Crazyflie
 
+import numpy as np
+import signal
+
+name1 = 'cf1'
+name3 = 'cf3'
+swarm = Crazyswarm()
+timeHelper = swarm.timeHelper
+allcfs = swarm.allcfs
+cf1:Crazyflie = swarm.allcfs.crazyfliesByName[name1]
+# cf3:Crazyflie = swarm.allcfs.crazyfliesByName[name3]
+def keyInterHandler(Signal,Frame):
+    loopSignal = 0
+    position = {'x':0,'y':0,'z':0}
+    allcfs.land(0.03,3.0)
+    print('emergency stop')
+    # for cf in allcfs.crazyflies:
+    #     position['x']=cf.getParam('stateEstimate.x')
+    #     position['y']=cf.getParam('stateEstimate.y')
+    #     # position['z']=cf.getParam('stateEstimate.z')
+    #     # cf.land(0.03,3.0)
+    #     print(cf.prefix,"land to ",f"{position['x']},{position['y']},0.03")
 
 def main():
-    Z = 1.0
+    Z =0.5
+    signal.signal(signal.SIGINT,keyInterHandler)
+    allcfs.takeoff(targetHeight=Z, duration=2.0)
+    timeHelper.sleep(5.0)
 
-    swarm = Crazyswarm()
-    timeHelper = swarm.timeHelper
-    allcfs = swarm.allcfs
+    allcfs.goTo([0.0,0.0,0.5],yaw=0.,duration=3.0)
+    timeHelper.sleep(4.0)
 
-    allcfs.takeoff(targetHeight=Z, duration=1.0+Z)
-    timeHelper.sleep(1.5+Z)
-    for cf in allcfs.crazyflies:
-        pos = np.array(cf.initialPosition) + np.array([0, 0, Z])
-        cf.goTo(pos, 0, 1.0)
+    cf1.goTo([0.5,0.5,0.5],0.,duration=3.0)
+    timeHelper.sleep(4.0)
+    # # cf1.goTo([-0.5,-0.5,0.5],0.,duration=3.0)
+    # # # for cf in allcfs.crazyflies:
+    # # # #     pos = np.array(cf.initialPosition) + np.array([0, 0, Z])
+    # # # #     cf.goTo(pos, 0, 0.5)
+    # # timeHelper.sleep(4.0)
+    cf1.goTo([0.0,0.0,0.5],0.,duration=3.0)
+    timeHelper.sleep(4.0)
 
-    print('press button to continue...')
-    swarm.input.waitUntilButtonPressed()
+    # # print('press button to continue...')
+    # # swarm.input.waitUntilButtonPressed()
 
-    allcfs.land(targetHeight=0.02, duration=1.0+Z)
-    timeHelper.sleep(1.0+Z)
+    allcfs.land(targetHeight=0.02, duration=2.0)
+    timeHelper.sleep(2.0)
 
 
 if __name__ == '__main__':
