@@ -1,9 +1,14 @@
 # named list of all robots
 robots:
   cf1:
-    enabled: true
+    enabled: false
     # uri: radio://0/20/2M/E7E7E7E7E9
     uri: radio://0/80/2M/E7E7E7E702
+    initial_position: [0.0, 0.0, 0.0]
+    type: cf21_mocap_deck
+  cf2:
+    enabled: true
+    uri: radio://0/80/2M/E7E7E7E701
     initial_position: [0.0, 0.0, 0.0]
     type: cf21_mocap_deck
   cf3:
@@ -78,7 +83,7 @@ all:
   # firmware logging for all drones (use robot_types/type_name to set per type, or
   # robots/drone_name to set per drone)
   firmware_logging:
-    enabled: true
+    enabled: false
     # 上参数为使能固件log
     default_topics:
      # remove to disable default topic

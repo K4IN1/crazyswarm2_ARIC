@@ -7,11 +7,14 @@ import numpy as np
 import signal
 
 name1 = 'cf1'
-name3 = 'cf3'
+name2 = 'cf2'
+# name3 = 'cf3'
 swarm = Crazyswarm()
 timeHelper = swarm.timeHelper
 allcfs = swarm.allcfs
-cf1:Crazyflie = swarm.allcfs.crazyfliesByName[name1]
+# cf1:Crazyflie = swarm.allcfs.crazyfliesByName[name1]
+cf2:Crazyflie = swarm.allcfs.crazyfliesByName[name2]
+
 # cf3:Crazyflie = swarm.allcfs.crazyfliesByName[name3]
 def keyInterHandler(Signal,Frame):
     loopSignal = 0
@@ -26,23 +29,23 @@ def keyInterHandler(Signal,Frame):
     #     print(cf.prefix,"land to ",f"{position['x']},{position['y']},0.03")
 
 def main():
-    Z =0.5
+    Z =0.3
     signal.signal(signal.SIGINT,keyInterHandler)
-    allcfs.takeoff(targetHeight=Z, duration=2.0)
-    timeHelper.sleep(5.0)
+    allcfs.takeoff(targetHeight=Z, duration=5.0)
+    timeHelper.sleep(6.0)
 
-    allcfs.goTo([0.0,0.0,0.5],yaw=0.,duration=3.0)
-    timeHelper.sleep(4.0)
+    # allcfs.goTo([0.0,0.0,0.3],yaw=0.,duration=2.0)
+    # timeHelper.sleep(4.0)
 
-    cf1.goTo([0.5,0.5,0.5],0.,duration=3.0)
-    timeHelper.sleep(4.0)
+    cf2.goTo([0.5,0.0,0.3],0.6,duration=5.0)
+    timeHelper.sleep(6.0)
     # # cf1.goTo([-0.5,-0.5,0.5],0.,duration=3.0)
     # # # for cf in allcfs.crazyflies:
     # # # #     pos = np.array(cf.initialPosition) + np.array([0, 0, Z])
     # # # #     cf.goTo(pos, 0, 0.5)
     # # timeHelper.sleep(4.0)
-    cf1.goTo([0.0,0.0,0.5],0.,duration=3.0)
-    timeHelper.sleep(4.0)
+    cf2.goTo([0.0,0.0,0.3],0.,duration=5.0)
+    timeHelper.sleep(6.0)
 
     # # print('press button to continue...')
     # # swarm.input.waitUntilButtonPressed()
